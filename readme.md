@@ -27,12 +27,11 @@ If you have any merge conflicts when pulling and you have issues ask for help AS
 
 ## Bring your feature branch up to date with master
 
-```git checkout master
-git fetch -p origin
-git merge origin/master
-git checkout initials/featureName
-git merge master
-```
+1) `git checkout master`
+2) `git fetch -p origin`
+3) `git merge origin/master`
+4) `git checkout initials/featureName`
+5) `git merge master`
 
 If there are merge conflicts a text editor may open. VScode is great for this since it shows the diffs and changes clearly. Edit the merge commit to fix issues and commit your updated branch with `git push origin initials/featureName`.
 
@@ -44,14 +43,14 @@ To prevent merge conflicts, talk with team members before making large changes. 
 
 ## Please do the above github steps.
 
-Make a new branch called `initials/githubTest`, add a commit adding a check in the checkbox corresponding with your name in the readme. Push request and merge your branch with master. Once you finish the merge, run a `git pull`.
+Make a new branch called `initials/githubTest`, add a commit adding a check in the checkbox corresponding with your name in the readme. Push request and merge your branch with master.
 This is to fullfil the requirements for the "Managing Team GitHub Page, Shared Repository, and Workflow Process assignment" on canvas.
 
 The checkboxes are below.
 
-[] Boris Ermakov-Spektor
-[] Jenny Baik
-[] Osiris Villacampa
-[] Ryan Carter
-[] Sam Bevans-Kerr
-[] Chase Root
+- [X] Boris Ermakov-Spektor
+- [ ] Jenny Baik
+- [ ] Osiris Villacampa
+- [ ] Ryan Carter
+- [ ] Sam Bevans-Kerr
+- [ ] Chase Root
