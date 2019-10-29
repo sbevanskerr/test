@@ -59,7 +59,7 @@ The checkboxes are below.
 
 - [X] Boris Ermakov-Spektor
 - [X] Jenny Baik
-- [ ] Osiris Villacampa
+- [X] Osiris Villacampa
 - [X] Ryan Carter
 - [ ] Sam Bevans-Kerr
 - [ ] Chase Root
