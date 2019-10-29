@@ -6,6 +6,7 @@ A React + Express Webapp to help Gainesville residents find resources easier.
 
 1) Clone the repo
 2) `cd mygnv-team-10d`
+2) Copy your server `config.js` to `server/config/config.js`
 3) `npm install`
 4) `npm start`
 5) Navigate to `localhost:8080`
@@ -13,7 +14,7 @@ A React + Express Webapp to help Gainesville residents find resources easier.
 ## Building for Deployment
 
 1) `npm run build`
-2) 'npm run start:prod`
+2) `npm run start:prod`
 3) Built files are being served on `localhost:8080`
 
 ## Create, Checkout & Check-in Branches
@@ -57,7 +58,7 @@ This is to fullfil the requirements for the "Managing Team GitHub Page, Shared R
 The checkboxes are below.
 
 - [X] Boris Ermakov-Spektor
-- [ ] Jenny Baik
+- [X] Jenny Baik
 - [ ] Osiris Villacampa
 - [X] Ryan Carter
 - [ ] Sam Bevans-Kerr
