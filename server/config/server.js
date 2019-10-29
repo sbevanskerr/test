@@ -3,7 +3,9 @@ const path = require('path');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+
 const config = require('./config');
+const port = config.port || 8080;
 
 const developmentMode = 'development';
 const devServerEnabled = process.env.NODE_ENV === developmentMode;
@@ -12,6 +14,8 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackConfig = require('../../webpack.config.js');
+
+const providersRouter = require('../routes/providers.route.js');
 
 module.exports.start = function() {
   //connect to database
@@ -55,7 +59,11 @@ module.exports.start = function() {
   //body parsing middleware
   app.use(bodyParser.json());
 
-  const port = config.port || 8080;
+  app.get('/api', (req, res) => {
+    res.send('Hello World!');
+  });
+
+  app.use('/api/providers', providersRouter);
 
   const webpackBuildDir = path.join(__dirname, '../../dist');
   app.use(express.static(webpackBuildDir));
@@ -64,13 +72,8 @@ module.exports.start = function() {
   app.get('/', (req, res) => {
     res.sendFile(htmlEntrypoint);
   });
-
-  const mockResponse = {
-    foo: 'bar',
-    bar: 'foo',
-  };
-  app.get('/api', (req, res) => {
-    res.send(mockResponse);
+  app.all('/*', (req, res) => {
+    res.sendFile(htmlEntrypoint);
   });
 
   app.listen(port, function() {
