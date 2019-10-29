@@ -5,12 +5,13 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const config = require('./config');
 
+const developmentMode = 'development';
+const devServerEnabled = process.env.NODE_ENV === developmentMode;
+
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackConfig = require('../../webpack.config.js');
-
-const devServerEnabled = process.env.mode === 'development';
 
 module.exports.start = function() {
   //connect to database
@@ -24,6 +25,8 @@ module.exports.start = function() {
   const app = express();
 
   if (devServerEnabled) {
+    webpackConfig.mode = developmentMode;
+
     //reload=true:Enable auto reloading when changing JS files or content
     //timeout=1000:Time from disconnecting from server to reconnecting
     webpackConfig.entry.unshift(

@@ -4,7 +4,6 @@ const path = require('path');
 const config = require('./server/config/config');
 
 module.exports = {
-  mode: 'development',
   entry: ['react-hot-loader/patch', './client/index.js'],
   output: {
     path: path.join(__dirname, 'dist'),
