@@ -1,10 +1,14 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
 const path = require('path');
+const config = require('./server/config/config');
+
 module.exports = {
+  mode: 'development',
   entry: ['react-hot-loader/patch', './client/index.js'],
   output: {
     path: path.join(__dirname, 'dist'),
+    publicPath: '/',
     filename: '[name].js',
   },
   plugins: [
@@ -15,6 +19,12 @@ module.exports = {
     new ErrorOverlayPlugin(),
   ],
   devtool: 'cheap-module-source-map', // 'eval' is not supported by error-overlay-webpack-plugin
+  devServer: {
+    contentBase: './dist',
+    hot: true,
+    port: config.port,
+    host: `localhost`,
+  },
   module: {
     rules: [
       {
