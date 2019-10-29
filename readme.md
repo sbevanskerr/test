@@ -49,7 +49,7 @@ This is to fullfil the requirements for the "Managing Team GitHub Page, Shared R
 The checkboxes are below.
 
 - [X] Boris Ermakov-Spektor
-- [ ] Jenny Baik
+- [X] Jenny Baik
 - [ ] Osiris Villacampa
 - [X] Ryan Carter
 - [ ] Sam Bevans-Kerr
