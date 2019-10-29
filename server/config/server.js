@@ -8,12 +8,13 @@ const config = require('./config');
 const port = config.port || 8080;
 
 const developmentMode = 'development';
-const devServerEnabled = process.env.NODE_ENV === developmentMode;
+const devServerEnabled =
+  process.argv.length >= 2 && process.argv[2] === developmentMode;
 
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
-const webpackConfig = require('../../webpack.config.js');
+const webpackDevConfig = require('../../webpack.dev.js');
 
 const providersRouter = require('../routes/providers.route.js');
 
@@ -29,23 +30,23 @@ module.exports.start = function() {
   const app = express();
 
   if (devServerEnabled) {
-    webpackConfig.mode = developmentMode;
+    webpackDevConfig.devServer.port = port;
 
     //reload=true:Enable auto reloading when changing JS files or content
     //timeout=1000:Time from disconnecting from server to reconnecting
-    webpackConfig.entry.unshift(
+    webpackDevConfig.entry.unshift(
       'webpack-hot-middleware/client?reload=true&timeout=1000'
     );
 
     //Add HMR plugin
-    webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
+    webpackDevConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
 
-    const compiler = webpack(webpackConfig);
+    const compiler = webpack(webpackDevConfig);
 
     //Enable "webpack-dev-middleware"
     app.use(
       webpackDevMiddleware(compiler, {
-        publicPath: webpackConfig.output.publicPath,
+        publicPath: webpackDevConfig.output.publicPath,
       })
     );
 
