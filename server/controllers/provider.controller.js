@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Provider = require('../models/providers.model.js');
+const Provider = require('../models/provider.model.js');
 
 /* Create a provider */
 exports.create = function(req, res) {

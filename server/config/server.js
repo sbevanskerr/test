@@ -16,7 +16,7 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackDevConfig = require('../../webpack.dev.js');
 
-const providersRouter = require('../routes/providers.route.js');
+const providerRouter = require('../routes/provider.route.js');
 
 module.exports.start = function() {
   //connect to database
@@ -64,7 +64,7 @@ module.exports.start = function() {
     res.send('Hello World!');
   });
 
-  app.use('/api/providers', providersRouter);
+  app.use('/api/provider', providerRouter);
 
   const webpackBuildDir = path.join(__dirname, '../../dist');
   app.use(express.static(webpackBuildDir));
