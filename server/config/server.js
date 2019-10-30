@@ -3,15 +3,20 @@ const path = require('path');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+
 const config = require('./config');
+const port = config.port || 8080;
 
 const developmentMode = 'development';
-const devServerEnabled = process.env.NODE_ENV === developmentMode;
+const devServerEnabled =
+  process.argv.length >= 2 && process.argv[2] === developmentMode;
 
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
-const webpackConfig = require('../../webpack.config.js');
+const webpackDevConfig = require('../../webpack.dev.js');
+
+const providerRouter = require('../routes/provider.route.js');
 
 module.exports.start = function() {
   //connect to database
@@ -25,23 +30,23 @@ module.exports.start = function() {
   const app = express();
 
   if (devServerEnabled) {
-    webpackConfig.mode = developmentMode;
+    webpackDevConfig.devServer.port = port;
 
     //reload=true:Enable auto reloading when changing JS files or content
     //timeout=1000:Time from disconnecting from server to reconnecting
-    webpackConfig.entry.unshift(
+    webpackDevConfig.entry.unshift(
       'webpack-hot-middleware/client?reload=true&timeout=1000'
     );
 
     //Add HMR plugin
-    webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
+    webpackDevConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
 
-    const compiler = webpack(webpackConfig);
+    const compiler = webpack(webpackDevConfig);
 
     //Enable "webpack-dev-middleware"
     app.use(
       webpackDevMiddleware(compiler, {
-        publicPath: webpackConfig.output.publicPath,
+        publicPath: webpackDevConfig.output.publicPath,
       })
     );
 
@@ -55,7 +60,11 @@ module.exports.start = function() {
   //body parsing middleware
   app.use(bodyParser.json());
 
-  const port = config.port || 8080;
+  app.get('/api', (req, res) => {
+    res.send('Hello World!');
+  });
+
+  app.use('/api/provider', providerRouter);
 
   const webpackBuildDir = path.join(__dirname, '../../dist');
   app.use(express.static(webpackBuildDir));
@@ -64,13 +73,8 @@ module.exports.start = function() {
   app.get('/', (req, res) => {
     res.sendFile(htmlEntrypoint);
   });
-
-  const mockResponse = {
-    foo: 'bar',
-    bar: 'foo',
-  };
-  app.get('/api', (req, res) => {
-    res.send(mockResponse);
+  app.all('/*', (req, res) => {
+    res.sendFile(htmlEntrypoint);
   });
 
   app.listen(port, function() {
