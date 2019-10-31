@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -6,7 +7,7 @@ class SearchBar extends React.Component {
 
     this.filterRef = React.createRef();
 
-    this.setFilterRef = element => {
+    this.setFilterRef = (element) => {
       this.filterRef = element;
     };
   }
@@ -28,5 +29,9 @@ class SearchBar extends React.Component {
     );
   }
 }
+
+SearchBar.propTypes = {
+  updateFilterText: PropTypes.func,
+};
 
 export default SearchBar;
