@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Form } from 'react-bootstrap';
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -18,14 +19,14 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <form>
-        <input
+      <Form>
+        <Form.Control
           type='text'
           placeholder='Type to Filter'
           ref={this.setFilterRef}
           onChange={this.filterUpdate.bind(this)}
         />
-      </form>
+      </Form>
     );
   }
 }
