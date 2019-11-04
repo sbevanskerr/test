@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import './App.scss';
 
 import SearchBar from './components/SearchBar';
+import ToolBar from './components/ToolBar';
 
 class App extends React.Component {
   constructor(props) {
@@ -21,10 +22,7 @@ class App extends React.Component {
     return (
       <div className='App'>
         <header className='App-header'>
-          <img src={logo} className='App-logo' alt='logo' />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
+          <ToolBar/>
           <a
             className='App-link'
             href='https://reactjs.org'
