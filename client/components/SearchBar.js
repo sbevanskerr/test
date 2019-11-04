@@ -14,9 +14,8 @@ class SearchBar extends React.Component {
   };
 
   render() {
-    const isLoading =
-      this.props.providers || this.props.providers === {} ? false : true;
     const providers = this.props.providers ? this.props.providers : {};
+    const isLoading = Object.keys(providers).length === 0 ? true : false;
     const providerList = Object.values(providers);
     return (
       <React.Fragment>

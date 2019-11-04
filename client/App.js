@@ -13,6 +13,7 @@ class App extends React.Component {
     super(props);
     this.state = { providers: {}, filterText: '', selectedProvider: '' };
   }
+
   componentDidMount() {
     axios
       .get('/api/provider')
