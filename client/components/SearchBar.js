@@ -16,13 +16,15 @@ class SearchBar extends React.Component {
   render() {
     const providers = this.props.providers ? this.props.providers : {};
     const isLoading = Object.keys(providers).length === 0 ? true : false;
-    const providerList = Object.values(providers);
+    const providerList = Object.values(providers).map(
+      (provider) => provider['Provider Name'],
+    );
     return (
       <React.Fragment>
         <Typeahead
           id='searchBox'
           labelKey='name'
-          options={providerList.map((option) => option['Provider Name'])}
+          options={providerList}
           placeholder={isLoading ? 'Loading...' : 'Search for a provider'}
           ref={this.filterRef}
           onInputChange={this.filterUpdate}

@@ -2,11 +2,11 @@ import { hot } from 'react-hot-loader/root';
 import React from 'react';
 import './App.scss';
 import axios from 'axios';
-import 'typeface-roboto';
 
 import SearchBar from './components/SearchBar';
 import DisplayProviders from './components/DisplayProviders';
 import Title from './components/Title';
+import NavBar from './components/NavBar';
 
 class App extends React.Component {
   constructor(props) {
@@ -18,11 +18,9 @@ class App extends React.Component {
     axios
       .get('/api/provider')
       .then((res) => {
-        // handle success
         this.setState({ providers: res.data });
       })
       .catch((err) => {
-        // handle error
         console.log(err);
       });
   }
@@ -38,17 +36,18 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <NavBar />
         <Title />
         <SearchBar
           providers={this.state.providers}
           updateFilterText={this.updateFilterText}
         />
-        <DisplayProviders
+        {/* <DisplayProviders
           providers={this.state.providers}
           filterText={this.state.filterText}
           selectedProvider={this.state.selectedProvider}
           updateSelected={this.updateSelected}
-        />
+        /> */}
       </React.Fragment>
     );
   }
