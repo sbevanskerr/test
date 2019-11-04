@@ -72,4 +72,4 @@ The checkboxes are below.
 - [X] Osiris Villacampa
 - [X] Ryan Carter
 - [X] Sam Bevans-Kerr
-- [ ] Chase Root
+- [X] Chase Root
