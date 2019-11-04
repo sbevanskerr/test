@@ -2,7 +2,7 @@ import { hot } from 'react-hot-loader/root';
 import React from 'react';
 import './App.scss';
 import axios from 'axios';
-import { Table } from 'react-bootstrap';
+import 'typeface-roboto';
 
 import SearchBar from './components/SearchBar';
 import DisplayProviders from './components/DisplayProviders';
@@ -11,7 +11,7 @@ import Title from './components/Title';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { providers: null, filterText: '', selectedProvider: null };
+    this.state = { providers: {}, filterText: '', selectedProvider: '' };
   }
   componentDidMount() {
     axios
@@ -26,31 +26,29 @@ class App extends React.Component {
       });
   }
 
-  updateFilterText(value) {
+  updateFilterText = (value) => {
     this.setState({ filterText: value });
-  }
+  };
 
-  selectedUpdate(id) {
-    console.log(id);
+  updateSelected = (id) => {
     this.setState({ selectedProvider: id });
-  }
+  };
 
   render() {
     return (
-      <div className='App'>
-        <body>
-          <Title />
-          <SearchBar updateFilterText={this.updateFilterText.bind(this)} />
-          <Table responsive>
-            <DisplayProviders
-              providers={this.state.providers}
-              filterText={this.state.filterText}
-              selectedProvider={this.state.selectedProvider}
-              selectedUpdate={this.selectedUpdate.bind(this)}
-            />
-          </Table>
-        </body>
-      </div>
+      <React.Fragment>
+        <Title />
+        <SearchBar
+          providers={this.state.providers}
+          updateFilterText={this.updateFilterText}
+        />
+        <DisplayProviders
+          providers={this.state.providers}
+          filterText={this.state.filterText}
+          selectedProvider={this.state.selectedProvider}
+          updateSelected={this.updateSelected}
+        />
+      </React.Fragment>
     );
   }
 }

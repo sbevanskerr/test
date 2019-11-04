@@ -4,8 +4,7 @@ import { Jumbotron, Button } from 'react-bootstrap';
 class Homepage extends React.Component {
   render() {
     return (
-      <div>
-        <h1></h1>
+      <React.Fragment>
         <Jumbotron>
           <h1>My GNV Resource Finder</h1>
           <p>
@@ -15,7 +14,7 @@ class Homepage extends React.Component {
             <Button variant='primary'>Link to Tutorial</Button>
           </p>
         </Jumbotron>
-      </div>
+      </React.Fragment>
     );
   }
 }

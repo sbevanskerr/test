@@ -1,14 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Table } from 'react-bootstrap';
-import axios from 'axios';
 
 class DisplayProviders extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
-    const { filterText, selectedProvider } = this.props;
-    const providers = this.props.providers || {};
+    const selectedProvider = this.props.selectedProvider
+      ? this.props.selectedProvider
+      : '';
+    const filterText = this.props.filterText ? this.props.filterText : '';
+    const providers = this.props.providers ? this.props.providers : {};
     const providerList = Object.values(providers)
       .filter((provider) => {
         return (
@@ -19,14 +19,15 @@ class DisplayProviders extends React.Component {
       })
       .map((provider) => {
         let selectedStyle;
-        if (provider._id === selectedProvider)
+        if (provider._id === selectedProvider) {
           selectedStyle = { backgroundColor: 'orange' };
+        }
         return (
           <tr
             key={provider._id}
             style={selectedStyle}
             onClick={() => {
-              this.props.selectedUpdate(provider._id);
+              this.props.updateSelected(provider._id);
             }}
           >
             <td>{provider['Provider Name']} </td>
@@ -34,8 +35,21 @@ class DisplayProviders extends React.Component {
         );
       });
 
-    return <div>{providerList}</div>;
+    return (
+      <React.Fragment>
+        <Table responsive='sm'>
+          <tbody>{providerList}</tbody>
+        </Table>
+      </React.Fragment>
+    );
   }
 }
+
+DisplayProviders.propTypes = {
+  selectedProvider: PropTypes.string,
+  updateSelected: PropTypes.func,
+  filterText: PropTypes.string,
+  providers: PropTypes.instanceOf(Object),
+};
 
 export default DisplayProviders;

@@ -115,7 +115,7 @@ const providerSchema = new Schema({
 providerSchema.pre('save', function(next) {
   // Sanity check to make sure at least name is provided
   // TODO: Add error checking as needed
-  /* eslint-disable no-invalid-this */
+  /* eslint-disable babel/no-invalid-this */
   if (this['Provider Name'] === undefined) {
     throw new Error('[DB]: name not provided');
   }
@@ -123,10 +123,10 @@ providerSchema.pre('save', function(next) {
   // Get date object
   const currDate = new Date();
   // Update the updated_at property
-  /* eslint-disable no-invalid-this */
+  /* eslint-disable babel/no-invalid-this */
   this.updated_at = currDate;
   // If created_at is not present then create it
-  /* eslint-disable no-invalid-this */
+  /* eslint-disable babel/no-invalid-this */
   if (!this.created_at) this.created_at = currDate;
   // Pass onto next middleware
   next();
