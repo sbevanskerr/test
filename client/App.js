@@ -5,7 +5,9 @@ import './App.scss';
 
 import SearchBar from './components/SearchBar';
 import ToolBar from './components/ToolBar';
+import MainPage from './components/MainPage'
 
+import { Route, Switch } from 'react-router-dom'
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -21,23 +23,27 @@ class App extends React.Component {
   render() {
     return (
       <div className='App'>
-        <header className='App-header'>
-          <ToolBar/>
-          <a
-            className='App-link'
-            href='https://reactjs.org'
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            {this.state.filterText}
-          </a>
-        </header>
-        <body>
-          <SearchBar updateFilterText={this.updateFilterText.bind(this)} />
-        </body>
+        <Switch>
+          <Route exact path ="/" component={MainPage}/>
+          <Route path="/toolbar" component={ToolBar}/>
+        </Switch>
       </div>
     );
   }
 }
 
 export default hot(App);
+//render() {
+//   return (
+//     <div className='App'>
+//       <header className='App-header'>
+//         <SearchBar updateFilterText={this.updateFilterText.bind(this)} />
+//         <ToolBar/>
+//       </header>
+//       <body>
+//         <MainPage/>
+        
+//       </body>
+//     </div>
+//   );
+// }

@@ -4,5 +4,13 @@ import 'normalize.css';
 import './custom.scss';
 import './index.scss';
 import App from './App';
+import { render } from 'react-dom'
+import { BrowserRouter } from 'react-router-dom'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+
+render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.querySelector('#root')
+)

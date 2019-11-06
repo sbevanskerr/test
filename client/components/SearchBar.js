@@ -3,7 +3,7 @@ import React from 'react';
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
-
+    
     this.filterRef = React.createRef();
 
     this.setFilterRef = element => {
