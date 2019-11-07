@@ -60,12 +60,6 @@ module.exports.start = function() {
   // body parsing middleware
   app.use(bodyParser.json());
 
-  app.get('/api', (req, res) => {
-    res.send('Hello World!');
-  });
-
-  app.use('/api/provider', providerRouter);
-
   const webpackBuildDir = path.join(__dirname, '../../dist');
   app.use(express.static(webpackBuildDir));
 
@@ -73,9 +67,18 @@ module.exports.start = function() {
   app.get('/', (req, res) => {
     res.sendFile(htmlEntrypoint);
   });
+  app.get('*', (req, res) => {
+    res.sendFile(htmlEntrypoint);
+  });
   app.all('/*', (req, res) => {
     res.sendFile(htmlEntrypoint);
   });
+
+  app.get('/api', (req, res) => {
+    res.send('Hello World!');
+  });
+
+  app.use('/api/provider', providerRouter);
 
   app.listen(port, function() {
     console.log('App listening on port: ' + port);

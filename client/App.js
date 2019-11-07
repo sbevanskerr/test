@@ -4,10 +4,14 @@ import './App.scss';
 import axios from 'axios';
 
 import SearchBar from './components/SearchBar';
+import ToolBar from './components/ToolBar';
+import MainPage from './components/MainPage'
 import DisplayProviders from './components/DisplayProviders';
 import Title from './components/Title';
 import NavBar from './components/NavBar';
 
+
+import { Route, Switch } from 'react-router-dom'
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -48,7 +52,11 @@ class App extends React.Component {
           selectedProvider={this.state.selectedProvider}
           updateSelected={this.updateSelected}
         /> */}
-      </React.Fragment>
+        <Switch>
+          <Route exact path ="/" component={MainPage}/>
+          <Route path="/toolbar" component={ToolBar}/>
+        </Switch>
+      <React.Fragment>
     );
   }
 }
