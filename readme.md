@@ -11,6 +11,16 @@ A React + Express Webapp to help Gainesville residents find resources easier.
 4) `npm start`
 5) Navigate to `localhost:8080`
 
+## Linting your Code
+
+Before making a pull request, please lint and fix your code.
+
+1) `npm run lint`
+
+The linter can automatically fix some (not all) issues with the below command.
+
+2) `npm run lint:fix`
+
 ## Building for Deployment
 
 1) `npm run build`
@@ -62,4 +72,4 @@ The checkboxes are below.
 - [X] Osiris Villacampa
 - [X] Ryan Carter
 - [X] Sam Bevans-Kerr
-- [ ] Chase Root
+- [X] Chase Root
