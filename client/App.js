@@ -3,15 +3,13 @@ import React from 'react';
 import './App.scss';
 import axios from 'axios';
 
+import NavBar from './components/NavBar';
 import SearchBar from './components/SearchBar';
-import ToolBar from './components/ToolBar';
-import MainPage from './components/MainPage'
+import MainPage from './components/MainPage';
 import DisplayProviders from './components/DisplayProviders';
 import Title from './components/Title';
-import NavBar from './components/NavBar';
 
-
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -42,21 +40,30 @@ class App extends React.Component {
       <React.Fragment>
         <NavBar />
         <Title />
-        <SearchBar
-          providers={this.state.providers}
-          updateFilterText={this.updateFilterText}
-        />
-        {/* <DisplayProviders
-          providers={this.state.providers}
-          filterText={this.state.filterText}
-          selectedProvider={this.state.selectedProvider}
-          updateSelected={this.updateSelected}
-        /> */}
         <Switch>
-          <Route exact path ="/" component={MainPage}/>
-          <Route path="/toolbar" component={ToolBar}/>
+          <Route exact path='/' component={MainPage} />
+          <Route
+            path='/search'
+            render={() => (
+              <SearchBar
+                providers={this.state.providers}
+                updateFilterText={this.updateFilterText}
+              />
+            )}
+          />
+          <Route
+            path='/providers'
+            render={() => (
+              <DisplayProviders
+                providers={this.state.providers}
+                filterText={this.state.filterText}
+                selectedProvider={this.state.selectedProvider}
+                updateSelected={this.updateSelected}
+              />
+            )}
+          />
         </Switch>
-      <React.Fragment>
+      </React.Fragment>
     );
   }
 }

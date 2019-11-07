@@ -42,6 +42,9 @@ module.exports.start = function() {
     webpackDevConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
 
     const compiler = webpack(webpackDevConfig);
+    const history = require('connect-history-api-fallback');
+
+    app.use(history());
 
     // Enable "webpack-dev-middleware"
     app.use(
@@ -60,25 +63,21 @@ module.exports.start = function() {
   // body parsing middleware
   app.use(bodyParser.json());
 
-  const webpackBuildDir = path.join(__dirname, '../../dist');
-  app.use(express.static(webpackBuildDir));
-
-  const htmlEntrypoint = path.join(webpackBuildDir, 'index.html');
-  app.get('/', (req, res) => {
-    res.sendFile(htmlEntrypoint);
-  });
-  app.get('*', (req, res) => {
-    res.sendFile(htmlEntrypoint);
-  });
-  app.all('/*', (req, res) => {
-    res.sendFile(htmlEntrypoint);
-  });
-
   app.get('/api', (req, res) => {
     res.send('Hello World!');
   });
 
   app.use('/api/provider', providerRouter);
+
+  const webpackBuildDir = path.join(__dirname, '../../dist');
+  app.use(express.static(webpackBuildDir));
+
+  const htmlEntrypoint = path.join(webpackBuildDir, 'index.html');
+
+  // Handles any requests that don't match the ones above
+  app.get('*', (req, res) => {
+    res.sendFile(htmlEntrypoint);
+  });
 
   app.listen(port, function() {
     console.log('App listening on port: ' + port);
