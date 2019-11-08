@@ -1,6 +1,5 @@
 import { hot } from 'react-hot-loader/root';
 import React from 'react';
-import './App.scss';
 import axios from 'axios';
 
 import NavBar from './components/NavBar';
@@ -8,6 +7,7 @@ import SearchBar from './components/SearchBar';
 import MainPage from './components/MainPage';
 import DisplayProviders from './components/DisplayProviders';
 import Title from './components/Title';
+import Categories from './components/Categories';
 
 import { Route, Switch } from 'react-router-dom';
 class App extends React.Component {
@@ -62,6 +62,7 @@ class App extends React.Component {
               />
             )}
           />
+          <Route exact path='/categories' component={Categories} />
         </Switch>
       </React.Fragment>
     );

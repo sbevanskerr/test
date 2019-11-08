@@ -1,7 +1,8 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './NavBar.scss';
+import homeIcon from '../images/myGNV_img_black.png';
 
 class NavBar extends React.Component {
   render() {
@@ -12,19 +13,43 @@ class NavBar extends React.Component {
         expand='sm'
         variant='dark'
       >
-        <Navbar.Brand href='#home'>myGNV Resource Directory</Navbar.Brand>
+        <Navbar.Brand>
+          <img
+            src={homeIcon}
+            height='30'
+            className='d-inline-block align-top'
+            style={{ paddingRight: '0.25em' }}
+          ></img>
+          <span className='black-100'>my</span>GNV{' '}
+          <span className='black-100'>Resource Directory</span>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
         <Navbar.Collapse id='responsive-navbar-nav'>
           <Nav className='mr-auto'>
-            <Link to='/' className='navbar-link'>
+            <NavLink
+              exact
+              to='/'
+              className='navbar-link'
+              activeClassName='navbar-active'
+            >
               Home
-            </Link>
-            <Link to='/search' className='navbar-link'>
+            </NavLink>
+            <NavLink
+              exact
+              to='/search'
+              className='navbar-link'
+              activeClassName='navbar-active'
+            >
               Search
-            </Link>
-            <Link to='/admin' className='navbar-link'>
+            </NavLink>
+            <NavLink
+              exact
+              to='/admin'
+              className='navbar-link'
+              activeClassName='navbar-active'
+            >
               Admin
-            </Link>
+            </NavLink>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

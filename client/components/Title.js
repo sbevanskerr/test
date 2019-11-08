@@ -10,6 +10,10 @@ class Homepage extends React.Component {
           style={{ marginTop: '1em' }}
           className='blue-cool-70v-bg white-0'
         >
+          <i
+            class='fas fa-hand-holding-heart'
+            style={{ paddingRight: '0.5em' }}
+          ></i>
           Life can get tough sometimes. We get it. We’re here to help. Find free
           resources here.
         </Alert>
