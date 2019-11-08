@@ -8,35 +8,35 @@ class Categories extends React.Component {
         <Container>
           <Row>
             <Col>
-              <i class='fas fa-home'></i>
+              <i className='fas fa-home'></i>
             </Col>
             <Col>
-              <i class='fas fa-home'></i>
+              <i className='fas fa-home'></i>
             </Col>
             <Col>
-              <i class='fas fa-home'></i>
+              <i className='fas fa-home'></i>
             </Col>
           </Row>
           <Row>
             <Col>
-              <i class='fas fa-home'></i>
+              <i className='fas fa-home'></i>
             </Col>
             <Col>
-              <i class='fas fa-home'></i>
+              <i className='fas fa-home'></i>
             </Col>
             <Col>
-              <i class='fas fa-home'></i>
+              <i className='fas fa-home'></i>
             </Col>
           </Row>
           <Row>
             <Col sm={4}>
-              <i class='fas fa-home'></i>
+              <i className='fas fa-home'></i>
             </Col>
             <Col>
-              <i class='fas fa-home'></i>
+              <i className='fas fa-home'></i>
             </Col>
             <Col>
-              <i class='fas fa-home'></i>
+              <i className='fas fa-home'></i>
             </Col>
           </Row>
         </Container>
