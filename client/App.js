@@ -7,7 +7,16 @@ import SearchBar from './components/SearchBar';
 import MainPage from './components/MainPage';
 import DisplayProviders from './components/DisplayProviders';
 import Title from './components/Title';
-import TopLevelCategories from './components/categories/TopLevelCategories';
+import Categories from './components/Categories';
+
+import basicNeeds from './components/categories/basicNeeds';
+import crisisServices from './components/categories/crisisServices';
+import familyServices from './components/categories/familyServices';
+import finance from './components/categories/finance';
+import healthServices from './components/categories/healthServices';
+import legalServices from './components/categories/legalServices';
+import other from './components/categories/other';
+import topLevelCategories from './components/categories/topLevelCategories';
 
 import paths from './RouterPaths';
 
@@ -37,7 +46,55 @@ class App extends React.Component {
     this.setState({ selectedProvider: id });
   };
 
+  getCategoryRoutes() {
+    return (
+      <React.Fragment>
+        <Route
+          exact
+          path={paths.topLevelCategoriesPath}
+          render={() => <Categories categoryList={topLevelCategories} />}
+        />
+        <Route
+          exact
+          path={paths.basicNeedsPath}
+          render={() => <Categories categoryList={basicNeeds} />}
+        />
+        <Route
+          exact
+          path={paths.crisisServicesPath}
+          render={() => <Categories categoryList={crisisServices} />}
+        />
+        <Route
+          exact
+          path={paths.familyServicesPath}
+          render={() => <Categories categoryList={familyServices} />}
+        />
+        <Route
+          exact
+          path={paths.financePath}
+          render={() => <Categories categoryList={finance} />}
+        />
+        <Route
+          exact
+          path={paths.healthServicesPath}
+          render={() => <Categories categoryList={healthServices} />}
+        />
+        <Route
+          exact
+          path={paths.legalServicesPath}
+          render={() => <Categories categoryList={legalServices} />}
+        />
+        <Route
+          exact
+          path={paths.otherPath}
+          render={() => <Categories categoryList={other} />}
+        />
+      </React.Fragment>
+    );
+  }
+
   render() {
+    const categoryRoutes = this.getCategoryRoutes();
     return (
       <React.Fragment>
         <NavBar />
@@ -45,6 +102,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path={paths.mainPath} component={MainPage} />
           <Route
+            exact
             path={paths.searchPath}
             render={() => (
               <SearchBar
@@ -54,6 +112,7 @@ class App extends React.Component {
             )}
           />
           <Route
+            exact
             path={paths.displayProvidersPath}
             render={() => (
               <DisplayProviders
@@ -64,11 +123,7 @@ class App extends React.Component {
               />
             )}
           />
-          <Route
-            exact
-            path={paths.topLevelCategoriesPath}
-            component={TopLevelCategories}
-          />
+          {categoryRoutes}
         </Switch>
       </React.Fragment>
     );

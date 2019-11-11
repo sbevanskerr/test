@@ -32,7 +32,7 @@ class CategoryCard extends React.Component {
         onMouseEnter={this.startHover}
         onMouseLeave={this.endHover}
         className={this.state.className}
-        variant='outline-*'
+        variant="outline-*"
         style={{
           minWidth: '7em',
           minHeight: '8em',
@@ -45,7 +45,7 @@ class CategoryCard extends React.Component {
           style={{ display: 'block', paddingTop: '0.2em' }}
         ></i>
         <div style={{ wordWrap: 'break-word', whiteSpace: 'pre-wrap' }}>
-          {this.props.providerName}
+          {this.props.categoryName}
         </div>
       </Button>
     );
@@ -55,7 +55,7 @@ class CategoryCard extends React.Component {
 CategoryCard.propTypes = {
   iconName: PropTypes.string.isRequired,
   iconSize: PropTypes.number.isRequired,
-  providerName: PropTypes.string.isRequired,
+  categoryName: PropTypes.string.isRequired,
   path: PropTypes.string.isRequired,
   history: PropTypes.instanceOf(Object).isRequired,
 };

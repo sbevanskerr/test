@@ -5,9 +5,13 @@ const cleanPath = (path) => {
 const mainPath = '/';
 const searchPath = '/search';
 const adminPath = '/admin';
-const topLevelCategoriesPath = '/categories';
 const displayProvidersPath = '/providers';
 
+const topLevelCategoriesPath = '/categories';
+
+const basicNeedsPath = topLevelCategoriesPath + '/' + cleanPath('Basic Needs');
+const crisisServicesPath =
+  topLevelCategoriesPath + '/' + cleanPath('Crisis Services');
 const familyServicesPath =
   topLevelCategoriesPath + '/' + cleanPath('Family Services');
 const financePath = topLevelCategoriesPath + '/' + cleanPath('Finance');
@@ -15,17 +19,16 @@ const healthServicesPath =
   topLevelCategoriesPath + '/' + cleanPath('Health Services');
 const legalServicesPath =
   topLevelCategoriesPath + '/' + cleanPath('Legal Services');
-const crisisServicesPath =
-  topLevelCategoriesPath + '/' + cleanPath('Crisis Services');
-const basicNeedsPath = topLevelCategoriesPath + '/' + cleanPath('Basic Needs');
 const otherPath = topLevelCategoriesPath + '/' + cleanPath('Other');
 
+/* eslint-disable no-unused-vars */
 const paths = {
   mainPath,
   searchPath,
   adminPath,
-  topLevelCategoriesPath,
   displayProvidersPath,
+
+  topLevelCategoriesPath,
 
   familyServicesPath,
   financePath,
