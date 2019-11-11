@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 class IndivProvider extends React.Component {
 
 }
 
-export default IndivProvider
+export default IndivProvider;
