@@ -1,27 +1,11 @@
 @import '../index.scss';
 
 .navbar-link {
-  color: $white-0;
+  color: $black-100;
   text-decoration: none;
   padding-right: 0.5em;
 }
-.navbar-link:focus {
-  color: white;
-  text-decoration: none;
-}
-.navbar-link:hover {
-  color: white;
-  text-decoration: none;
-}
-.navbar-link:visited {
-  color: white;
-  text-decoration: none;
-}
-.navbar-link:link {
-  color: white;
-  text-decoration: none;
-}
-.navbar-link:active {
-  color: $blue-cool-70v;
-  text-decoration: none;
+
+.navbar-active {
+  font-weight: bold;
 }
