@@ -2,8 +2,15 @@ import paths from "../../RouterPaths";
 
 const basicNeeds = [
   {
-    categoryName: "Placeholder",
-    iconName: "ellipsis-v",
+    categoryName: "Clothing",
+    path: paths.mainPath
+  },
+    {
+    categoryName: "Food Assistance",
+    path: paths.mainPath
+  },
+    {
+    categoryName: "Housing",
     path: paths.mainPath
   }
 ];

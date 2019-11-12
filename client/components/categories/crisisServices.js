@@ -2,9 +2,20 @@ import paths from '../../RouterPaths';
 
 const crisisServices = [
   {
-    categoryName: 'Placeholder',
-    iconName: 'ellipsis-v',
-    path: paths.mainPath,
+    categoryName: 'Crisis Counseling',
+    path: paths.mainPath
+  },
+    {
+    categoryName: 'Disaster',
+    path: paths.mainPath
+  },
+    {
+    categoryName: 'Shelters',
+    path: paths.mainPath
+  },
+    {
+    categoryName: 'Victim Services',
+    path: paths.mainPath
   },
 ];
 

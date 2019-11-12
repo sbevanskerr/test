@@ -8,6 +8,7 @@ import MainPage from './components/MainPage';
 import DisplayProviders from './components/DisplayProviders';
 import Title from './components/Title';
 import Categories from './components/Categories';
+import SubCategories from './components/SubCategories';
 
 import basicNeeds from './components/categories/basicNeeds';
 import crisisServices from './components/categories/crisisServices';
@@ -57,37 +58,37 @@ class App extends React.Component {
         <Route
           exact
           path={paths.basicNeedsPath}
-          render={() => <Categories categoryList={basicNeeds} />}
+          render={() => <SubCategories categoryList={basicNeeds} />}
         />
         <Route
           exact
           path={paths.crisisServicesPath}
-          render={() => <Categories categoryList={crisisServices} />}
+          render={() => <SubCategories categoryList={crisisServices} />}
         />
         <Route
           exact
           path={paths.familyServicesPath}
-          render={() => <Categories categoryList={familyServices} />}
+          render={() => <SubCategories categoryList={familyServices} />}
         />
         <Route
           exact
           path={paths.financePath}
-          render={() => <Categories categoryList={finance} />}
+          render={() => <SubCategories categoryList={finance} />}
         />
         <Route
           exact
           path={paths.healthServicesPath}
-          render={() => <Categories categoryList={healthServices} />}
+          render={() => <SubCategories categoryList={healthServices} />}
         />
         <Route
           exact
           path={paths.legalServicesPath}
-          render={() => <Categories categoryList={legalServices} />}
+          render={() => <SubCategories categoryList={legalServices} />}
         />
         <Route
           exact
           path={paths.otherPath}
-          render={() => <Categories categoryList={other} />}
+          render={() => <SubCategories categoryList={other} />}
         />
       </React.Fragment>
     );
