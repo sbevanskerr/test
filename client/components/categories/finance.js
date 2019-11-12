@@ -2,8 +2,15 @@ import paths from '../../RouterPaths';
 
 const finance = [
   {
-    categoryName: 'Placeholder',
-    iconName: 'ellipsis-v',
+    categoryName: 'Eviction/ Foreclosure',
+    path: paths.mainPath,
+  },
+    {
+    categoryName: 'Social Security',
+    path: paths.mainPath,
+  },
+    {
+    categoryName: 'Utilities',
     path: paths.mainPath,
   },
 ];
