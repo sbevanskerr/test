@@ -15,6 +15,7 @@ const makeSubcategory = (names, linkId) => {
       name: currentName,
       icon_name: 'null',
       subcategory_of: [linkId],
+      is_lowest_level: true,
     });
   });
   return subcategory;
@@ -26,60 +27,70 @@ const topLevelCategories = {
     name: 'Child & Families',
     icon_name: 'child',
     subcategory_of: [],
+    is_lowest_level: false,
   }),
   'Education': new Category({
     _id: new mongoose.Types.ObjectId(),
     name: 'Education',
     icon_name: 'book',
     subcategory_of: [],
+    is_lowest_level: true,
   }),
   'Financial': new Category({
     _id: new mongoose.Types.ObjectId(),
     name: 'Financial',
     icon_name: 'money-check-edit-alt',
     subcategory_of: [],
+    is_lowest_level: false,
   }),
   'Health & Wellness': new Category({
     _id: new mongoose.Types.ObjectId(),
     name: 'Health & Wellness',
     icon_name: 'medkit',
     subcategory_of: [],
+    is_lowest_level: false,
   }),
   'Job': new Category({
     _id: new mongoose.Types.ObjectId(),
     name: 'Job',
     icon_name: 'clipboard',
     subcategory_of: [],
+    is_lowest_level: true,
   }),
   'Legal': new Category({
     _id: new mongoose.Types.ObjectId(),
     name: 'Legal',
     icon_name: 'balance-scale-right',
     subcategory_of: [],
+    is_lowest_level: false,
   }),
   'Crisis Events': new Category({
     _id: new mongoose.Types.ObjectId(),
     name: 'Crisis Events',
     icon_name: 'hands-helping',
     subcategory_of: [],
+    is_lowest_level: false,
   }),
   'Transportation': new Category({
     _id: new mongoose.Types.ObjectId(),
     name: 'Transportation',
     icon_name: 'bus-alt',
     subcategory_of: [],
+    is_lowest_level: true,
   }),
   'Basic Needs': new Category({
     _id: new mongoose.Types.ObjectId(),
     name: 'Basic Needs',
     icon_name: 'utensils-alt',
     subcategory_of: [],
+    is_lowest_level: false,
   }),
   'Other': new Category({
     _id: new mongoose.Types.ObjectId(),
     name: 'Other',
     icon_name: 'ellipsis-v',
     subcategory_of: [],
+    is_lowest_level: false,
   }),
 };
 

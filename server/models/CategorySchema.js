@@ -14,6 +14,10 @@ const categorySchema = new Schema({
     required: true,
     type: String,
   },
+  is_lowest_level: {
+    required: true,
+    type: Boolean,
+  },
 });
 
 module.exports = mongoose.model('Category', categorySchema);
