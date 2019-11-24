@@ -13,6 +13,11 @@ router
   .put(providerController.update)
   .delete(providerController.delete);
 
+router
+  .route('/subCategory/:categoryId')
+  .get(providerController.listSubCategory);
+
 router.param('providerId', providerController.providerById);
+router.param('categoryId', providerController.getSubCategory);
 
 module.exports = router;

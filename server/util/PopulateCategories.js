@@ -1,20 +1,20 @@
 const mongoose = require('mongoose');
-const Category = require('./server/models/CategorySchema');
-const config = require('./server/config/config');
+const Category = require('../models/CategorySchema');
+const config = require('../config/config');
 
 mongoose.connect(config.db.uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
-const makeSubcategory = (names, linkId) => {
+const makeSubcategory = (names, ...linkId) => {
   const subcategory = {};
   names.forEach((currentName) => {
     subcategory[currentName] = new Category({
       _id: new mongoose.Types.ObjectId(),
       name: currentName,
       icon_name: 'null',
-      subcategory_of: [linkId],
+      subcategory_of: [...linkId],
       is_lowest_level: true,
     });
   });
@@ -94,8 +94,20 @@ const topLevelCategories = {
   }),
 };
 
+const elderServices = makeSubcategory(
+  ['Elder Services'],
+  topLevelCategories['Child & Families']._id,
+  topLevelCategories['Health & Wellness']._id,
+);
+
+const domesticViolence = makeSubcategory(
+  ['Domestic Violence/ Abuse'],
+  topLevelCategories['Child & Families']._id,
+  topLevelCategories['Crisis Events']._id,
+);
+
 const childAndFamilies = makeSubcategory(
-  ['Adoption', 'Domestic Violence/ Abuse', 'Elder Services', 'Women & Infants'],
+  ['Adoption', 'Women & Infants'],
   topLevelCategories['Child & Families']._id,
 );
 
@@ -111,7 +123,6 @@ const healthAndWellness = makeSubcategory(
     'Recreation / Fitness',
     'Dental',
     'Disability',
-    'Elder Services',
     'HIV-Related',
     'Massage Therapy',
     'Medical',
@@ -138,13 +149,7 @@ const legal = makeSubcategory(
 );
 
 const crisisEvents = makeSubcategory(
-  [
-    'Crisis Counseling',
-    'Disaster',
-    'Domestic Violence/ Abuse',
-    'Shelters',
-    'Victim Services',
-  ],
+  ['Crisis Counseling', 'Disaster', 'Shelters', 'Victim Services'],
   topLevelCategories['Crisis Events']._id,
 );
 
@@ -173,6 +178,10 @@ const dbPopulate = async () => {
 
   const categoryObjects = [
     topLevelCategories,
+
+    domesticViolence,
+    elderServices,
+
     childAndFamilies,
     financial,
     healthAndWellness,
@@ -194,7 +203,7 @@ const dbPopulate = async () => {
 
   for (const catIndex in categoryList) {
     if (Object.prototype.hasOwnProperty.call(categoryList, catIndex)) {
-      let saveDoc = null;
+      let saveDoc;
       try {
         saveDoc = await categoryList[catIndex].save();
       } catch (err) {
