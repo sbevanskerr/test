@@ -158,7 +158,7 @@ const dbPopulate = async () => {
   // PURGE ALL PREVIOUS CATEGORIES FIRST
   // THIS WILL DELETE OUR DATABASE TO REPOPULATE IT
   // !! DO NOT TOUCH IF UNSURE !!
-  // Category.deleteMany({}, () => {});
+  Category.deleteMany({}, () => {});
 
   const categoryObjects = [
     topLevelCategories,

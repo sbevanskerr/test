@@ -1,6 +1,6 @@
 const Provider = require('../models/ProviderSchema');
 
-/* Create a provider */
+// Create a provider
 exports.create = function(req, res) {
   const provider = new Provider(req.body);
 
@@ -18,13 +18,13 @@ exports.create = function(req, res) {
   });
 };
 
-/* Show the current provider */
+// Get the current provider
 exports.read = function(req, res) {
   /* send back the provider as json from the request */
   res.json(req.provider);
 };
 
-/* Update a provider */
+// Update a provider
 exports.update = function(req, res) {
   const provider = req.provider;
 
@@ -42,7 +42,7 @@ exports.update = function(req, res) {
   });
 };
 
-/* Delete a listing */
+// Delete a provider
 exports.delete = function(req, res) {
   const provider = req.provider;
   Provider.deleteOne(provider, (err) => {
@@ -53,22 +53,20 @@ exports.delete = function(req, res) {
   });
 };
 
-/* Retrieve all the directory listings, sorted alphabetically by listing code */
+// Get all the providers
 exports.list = function(req, res) {
-  Provider.find({})
-    .sort({ code: 1 })
-    .exec((err, providers) => {
-      if (err) {
-        console.log(err);
-        res.status(400).send(err);
-      } else {
-        res.json(providers);
-      }
-    });
+  Provider.find({}).exec((err, providers) => {
+    if (err) {
+      console.log(err);
+      res.status(400).send(err);
+    } else {
+      res.json(providers);
+    }
+  });
 };
 
-/* Middleware to get a provider from database by ID */
-exports.providerByID = function(req, res, next, id) {
+// Middleware to get a provider from database by ID
+exports.providerById = function(req, res, next, id) {
   Provider.findById(id).exec((err, provider) => {
     if (err) {
       res.status(400).send(err);

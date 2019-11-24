@@ -1,18 +1,18 @@
-const provider = require('../controllers/ProviderController.js');
+const providerController = require('../controllers/ProviderController');
 const express = require('express');
 const router = new express.Router();
 
 router
   .route('/')
-  .get(provider.list)
-  .post(provider.create);
+  .get(providerController.list)
+  .post(providerController.create);
 
 router
   .route('/:providerId')
-  .get(provider.read)
-  .put(provider.update)
-  .delete(provider.delete);
+  .get(providerController.read)
+  .put(providerController.update)
+  .delete(providerController.delete);
 
-router.param('providerId', provider.providerByID);
+router.param('providerId', providerController.providerById);
 
 module.exports = router;
