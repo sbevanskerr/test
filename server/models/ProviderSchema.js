@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const { ObjectId } = require('mongodb');
+
 /* Create your schema */
 const providerSchema = new Schema({
   'Provider Name': String,
@@ -132,6 +134,4 @@ providerSchema.pre('save', function(next) {
   next();
 });
 
-const Provider = mongoose.model('Provider', providerSchema);
-
-module.exports = Provider;
+module.exports = mongoose.model('Provider', providerSchema);

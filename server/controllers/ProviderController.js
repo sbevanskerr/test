@@ -1,4 +1,4 @@
-const Provider = require('../models/provider.model.js');
+const Provider = require('../models/ProviderSchema');
 
 /* Create a provider */
 exports.create = function(req, res) {

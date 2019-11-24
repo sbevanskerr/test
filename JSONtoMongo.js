@@ -1,8 +1,8 @@
 const fs = require('fs');
 const util = require('util');
 const mongoose = require('mongoose');
-const Provider = require('./server/models/provider.model.js');
-const config = require('./server/config/config.js');
+const Provider = require('./server/models/ProviderSchema');
+const config = require('./server/config/config');
 
 // Requires 'data.json` to be in the same folder as this script
 

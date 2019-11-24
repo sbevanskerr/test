@@ -16,7 +16,7 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackDevConfig = require('../../webpack.dev.js');
 
-const providerRouter = require('../routes/provider.route.js');
+const providerRouter = require('../routes/ProviderRoute.js');
 
 module.exports.start = function() {
   // connect to database

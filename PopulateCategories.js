@@ -1,0 +1,203 @@
+const mongoose = require('mongoose');
+const Category = require('./server/models/CategorySchema');
+const config = require('./server/config/config');
+
+mongoose.connect(config.db.uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+const makeSubcategory = (names, linkId) => {
+  const subcategory = {};
+  names.forEach((currentName) => {
+    subcategory[currentName] = new Category({
+      _id: new mongoose.Types.ObjectId(),
+      name: currentName,
+      icon_name: 'null',
+      subcategory_of: [linkId],
+    });
+  });
+  return subcategory;
+};
+
+const topLevelCategories = {
+  'Child & Families': new Category({
+    _id: new mongoose.Types.ObjectId(),
+    name: 'Child & Families',
+    icon_name: 'child',
+    subcategory_of: [],
+  }),
+  'Education': new Category({
+    _id: new mongoose.Types.ObjectId(),
+    name: 'Education',
+    icon_name: 'book',
+    subcategory_of: [],
+  }),
+  'Financial': new Category({
+    _id: new mongoose.Types.ObjectId(),
+    name: 'Financial',
+    icon_name: 'money-check-edit-alt',
+    subcategory_of: [],
+  }),
+  'Health & Wellness': new Category({
+    _id: new mongoose.Types.ObjectId(),
+    name: 'Health & Wellness',
+    icon_name: 'medkit',
+    subcategory_of: [],
+  }),
+  'Job': new Category({
+    _id: new mongoose.Types.ObjectId(),
+    name: 'Job',
+    icon_name: 'clipboard',
+    subcategory_of: [],
+  }),
+  'Legal': new Category({
+    _id: new mongoose.Types.ObjectId(),
+    name: 'Legal',
+    icon_name: 'balance-scale-right',
+    subcategory_of: [],
+  }),
+  'Crisis Events': new Category({
+    _id: new mongoose.Types.ObjectId(),
+    name: 'Crisis Events',
+    icon_name: 'hands-helping',
+    subcategory_of: [],
+  }),
+  'Transportation': new Category({
+    _id: new mongoose.Types.ObjectId(),
+    name: 'Transportation',
+    icon_name: 'bus-alt',
+    subcategory_of: [],
+  }),
+  'Basic Needs': new Category({
+    _id: new mongoose.Types.ObjectId(),
+    name: 'Basic Needs',
+    icon_name: 'utensils-alt',
+    subcategory_of: [],
+  }),
+  'Other': new Category({
+    _id: new mongoose.Types.ObjectId(),
+    name: 'Other',
+    icon_name: 'ellipsis-v',
+    subcategory_of: [],
+  }),
+};
+
+const childAndFamilies = makeSubcategory(
+  ['Adoption', 'Domestic Violence/ Abuse', 'Elder Services', 'Women & Infants'],
+  topLevelCategories['Child & Families']._id,
+);
+
+const financial = makeSubcategory(
+  ['Eviction/ Foreclosure', 'Social Security', 'Utilities'],
+  topLevelCategories['Financial']._id,
+);
+
+const healthAndWellness = makeSubcategory(
+  [
+    'Acupuncture',
+    'Cancer-Related',
+    'Recreation / Fitness',
+    'Dental',
+    'Disability',
+    'Elder Services',
+    'HIV-Related',
+    'Massage Therapy',
+    'Medical',
+    'Mental Health',
+    'Occupational Therapy',
+    'Pharmacy',
+    'Physical Therapy',
+    'Substance Abuse',
+    'Vision Care',
+    'Women\'s Health',
+  ],
+  topLevelCategories['Health & Wellness']._id,
+);
+
+const legal = makeSubcategory(
+  [
+    'Civil Liberties/ Social Justice',
+    'Immigration',
+    'Law Enforcement',
+    'Photo Identification',
+    'Voter Registration',
+  ],
+  topLevelCategories['Legal']._id,
+);
+
+const crisisEvents = makeSubcategory(
+  [
+    'Crisis Counseling',
+    'Disaster',
+    'Domestic Violence/ Abuse',
+    'Shelters',
+    'Victim Services',
+  ],
+  topLevelCategories['Crisis Events']._id,
+);
+
+const basicNeeds = makeSubcategory(
+  ['Clothing', 'Food Assistance', 'Housing'],
+  topLevelCategories['Basic Needs']._id,
+);
+
+const other = makeSubcategory(
+  [
+    'Burial',
+    'Computer',
+    'Information and Referral',
+    'Veterans',
+    'Veterinary / Animal Services',
+    'Miscellaneous',
+  ],
+  topLevelCategories['Other']._id,
+);
+
+const dbPopulate = async () => {
+  // PURGE ALL PREVIOUS CATEGORIES FIRST
+  // THIS WILL DELETE OUR DATABASE TO REPOPULATE IT
+  // !! DO NOT TOUCH IF UNSURE !!
+  // Category.deleteMany({}, () => {});
+
+  const categoryObjects = [
+    topLevelCategories,
+    childAndFamilies,
+    financial,
+    healthAndWellness,
+    legal,
+    crisisEvents,
+    basicNeeds,
+    other,
+  ];
+
+  const makeCategoryList = (categoryArray) => {
+    const allCategories = [];
+    categoryArray.forEach((element) => {
+      allCategories.push(...Object.values(element));
+    });
+    return allCategories;
+  };
+
+  const categoryList = makeCategoryList(categoryObjects);
+
+  for (const catIndex in categoryList) {
+    if (Object.prototype.hasOwnProperty.call(categoryList, catIndex)) {
+      let saveDoc = null;
+      try {
+        saveDoc = await categoryList[catIndex].save();
+      } catch (err) {
+        const errStr = `[DB]: ${err}`;
+        console.log(errStr);
+        throw errStr;
+      }
+      if (saveDoc != undefined) {
+        console.log(`[DB]: Successfully Saved: ${saveDoc}`);
+      }
+    }
+  }
+
+  return mongoose.disconnect();
+};
+
+dbPopulate();
