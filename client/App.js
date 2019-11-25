@@ -10,6 +10,7 @@ import SearchBar from './components/SearchBar';
 import MainPage from './components/MainPage';
 import DisplayProviders from './components/DisplayProviders';
 import Title from './components/Title';
+import AdminPortal from './components/AdminPortal';
 
 class App extends React.Component {
   constructor(props) {
@@ -61,6 +62,16 @@ class App extends React.Component {
         <NavBar />
         <Title />
         <Switch>
+          <Route
+            exact
+            path={paths.adminPath}
+            render={() => (
+              <AdminPortal
+                providers={this.state.providers}
+                // updateFilterText={this.updateFilterText}
+              />
+            )}
+          />
           <Route exact path={paths.mainPath} component={MainPage} />
           <Route
             exact
